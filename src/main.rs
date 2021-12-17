@@ -22,7 +22,8 @@ fn harvest_client(mut stream: &TcpStream) {
     match stream.read(&mut buf) {
         Ok(_) => {
             let req_str = String::from_utf8_lossy(&buf);
-            println!("{} {}", readu, req_str);
+            let req_src = stream.peer_addr().unwrap();
+            println!("{} {} {}", readu, req_src, req_str);
             },
         Err(e) => println!("Unable to read stream: {}", e),
     }
