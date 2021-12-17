@@ -1,6 +1,13 @@
 # mihno
 A simple TCP server honeypot written in Rust compatible with raw TCP and HTTP clients.
 
+sha256 of mihno binary
+27a4f56760afd4f042e1b09de78967edc4195f6d95bb03527173314345ff9caa
+
+sha1 of mihno binary
+fd92201da8f1dc965ca98d8003537666f2598659
+
+
 As usual for rust, `cargo build --release` to compile it.
 
 Raw TCP clients like telnet and netcat can send in data, as well as HTTP clients
@@ -22,6 +29,9 @@ Connection closed by foreign host.
 
 
 The output goes to STDOUT, so redirect to where you need etc.
+
+In this example output, we can see the telnet data in the middle there. The first transaction is a GET / from a web browser,
+the second a raw TCP (from our telnet above), and the third a curl doing a POST.
 
 ```
 2021-12-17 17:13:13.744257569 UTC Listening for connections on port 3975
@@ -45,5 +55,15 @@ Cache-Control: max-age=0
 2021-12-17 17:13:39.620966387 UTC 127.0.0.1:49364 some funky tcp data sent in
 
 2021-12-17 17:13:46.974986805 UTC Response sent _<---_ end transaction
+2021-12-17 19:09:17.934566878 UTC 60bd9d55-9784-4846-a10c-0af23cd6c396  _--->_ start transaction
+2021-12-17 19:09:17.934707002 UTC 127.0.0.1:59622 POST / HTTP/1.1
+Host: localhost:3975
+User-Agent: curl/7.74.0
+Accept: */*
+Content-Length: 27
+Content-Type: application/x-www-form-urlencoded
+
+honk honk message body post
+2021-12-17 19:09:17.934791245 UTC Response sent _<---_ end transaction
 
 ```
