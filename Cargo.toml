@@ -1,0 +1,10 @@
+[package]
+name = "mihno"
+version = "0.1.0" #a2c727ee8f206913df426b6bd29d7727bf19a10229466edfc349812388c911bd
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+chrono = "0.4"
+uuid = { version = "0.4", features = ["serde", "v4"] }
