@@ -24,33 +24,26 @@ Connection closed by foreign host.
 The output goes to STDOUT, so redirect to where you need etc.
 
 ```
-2021-12-17 16:14:55.063733301 UTC 56cbcac2-2fba-40e7-af7d-83de10c61cbd  _--->_ start transaction
-2021-12-17 16:14:55.063855867 UTC GET / HTTP/1.1
+2021-12-17 17:13:13.744257569 UTC Listening for connections on port 3975
+2021-12-17 17:13:19.679084778 UTC 72a6c16d-75ad-4c6a-bed1-c9c6ce143845  _--->_ start transaction
+2021-12-17 17:13:19.679346530 UTC 192.168.1.133:59677 GET / HTTP/1.1
 Host: mihno-host:3975
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101 Firefox/78.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:95.0) Gecko/20100101 Firefox/95.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate
+DNT: 1
 Connection: keep-alive
+Cookie: jenkins-timestamper-offset=21600000
 Upgrade-Insecure-Requests: 1
 Sec-GPC: 1
 Cache-Control: max-age=0
 
 
-2021-12-17 16:14:55.063947049 UTC Response sent _<---_ end transaction
-2021-12-17 16:47:10.334472197 UTC d163ceab-6aca-4a76-9e87-e39c8189cc71  _--->_ start transaction
-2021-12-17 16:47:10.334686574 UTC POST / HTTP/1.1
-Host: localhost:3975
-User-Agent: curl/7.74.0
-Accept: */*
-Content-Length: 9
-Content-Type: application/x-www-form-urlencoded
+2021-12-17 17:13:19.679460707 UTC Response sent _<---_ end transaction
+2021-12-17 17:13:39.620908274 UTC de379029-0fd9-4e72-9874-9a3ba277b3a9  _--->_ start transaction
+2021-12-17 17:13:39.620966387 UTC 127.0.0.1:49364 some funky tcp data sent in
 
-My client body
-2021-12-17 16:47:10.334781644 UTC Response sent _<---_ end transaction
-2021-12-17 16:49:15.120140610 UTC bb7b0e52-57ab-47c2-b4ea-d8266f618917  _--->_ start transaction
-2021-12-17 16:49:15.120350379 UTC funky data and stuff
-
-2021-12-17 16:49:19.602318623 UTC Response sent _<---_ end transaction
+2021-12-17 17:13:46.974986805 UTC Response sent _<---_ end transaction
 
 ```
