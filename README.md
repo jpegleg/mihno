@@ -67,3 +67,31 @@ honk honk message body post
 2021-12-17 19:09:17.934791245 UTC Response sent _<---_ end transaction
 
 ```
+
+
+M I H N O can be configured with different ports. It has proven very useful with port 389 and 53, it can detect log4shell for example. An LDAP bind request comes through as capital o letter and then a back tick, as such when viewing invisible characters: 
+
+```
+0^L^B^A^A`^G^B^A^C^D^@�
+```
+That blob is then followed by NULLs as well `^@` in M I H N O that default terminals will read as blank spaces unless you view "invisible" characters. The buffer set is 4096, that can be adjusted as needed in main.rs.
+
+An example of log4shell LDAP bind vs a regular bind, here is the log4shell bind:
+
+```
+2021-12-18 00:09:23.417878259 UTC bc36e55d-3cdb-44ca-8a64-b7616569e75b  _--->_ start transaction
+2021-12-18 00:09:23.418116772 UTC 127.0.0.1:40446 0
+                                                       `�
+2021-12-18 00:09:23.418259503 UTC Response sent _<---_ end transaction
+```
+
+And here is an example from Apache Directory Studio, a valid LDAP authenticated BIND request for user admin password admin (that would exit in error on the client side when the client receives the mihno response to its LDAP bind request, unless otherwise adjusted):
+
+```
+2021-12-18 03:51:12.493294279 UTC b8b275e0-0637-4778-a48b-73dad564ca2c  _--->_ start transaction
+2021-12-18 03:51:12.493480487 UTC 127.0.0.1:57685 0`admin�admin
+2021-12-18 03:51:12.545367898 UTC Response sent _<---_ end transaction
+```
+
+The IP, ephemeral port, headers, and raw data from the client connection (vulnerable host to log4shell for example as the client) are captured in STDOUT of M I H N O. This means raw binary data types are preserved, via threads of simple Rust. The output is to be used as a stream of honeypot data, likely processed by other programs.
+
