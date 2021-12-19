@@ -62,7 +62,7 @@ The output goes to STDOUT, so redirect to where you need etc.
 
 ```
 
-### Log amples with raw data instead of base64 encoded data (change in main.rs, see comments on line 25):
+### Log samples with raw data instead of base64 encoded data (change in main.rs, see comments on line 25):
 
 In this example output, we can see the telnet data in the middle there. The first transaction is a GET / from a web browser,
 the second a raw TCP (from our telnet above), and the third a curl doing a POST.
