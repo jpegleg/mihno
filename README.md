@@ -6,7 +6,8 @@ Example build steps with docker:
 ```
 git clone https://github.com/jpegleg/mihno && cd mihno
 cargo build --release
-docker build -t "myprivateregistryplace:5000/mihno:1" .
+docker build -t "127.0.0.1:5000/mihno:1" .
+docker run --restart unless-stopped -d -it -p 3975:3975 --ip 172.16.0.24 "127.0.0.1:5000/mihno:1"
 ```
 
 Example build steps, reconfiguring from default port 3975 to port 389, with systemd and a log file in /var/log/ on linux (using sudo):
