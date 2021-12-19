@@ -4,7 +4,7 @@ use std::thread;
 use uuid::Uuid;
 use chrono::prelude::*;
 extern crate chrono;
-
+extern crate base64;
 
 // A basic TCP server.
 // Take any data from the socket and dump it to standard out.
@@ -21,9 +21,10 @@ fn harvest_client(mut stream: &TcpStream,txid: Uuid) {
     let mut buf = [0u8 ;9072];
     match stream.read(&mut buf) {
         Ok(_) => {
-            let req_str = String::from_utf8_lossy(&buf);
+            let _req_str = String::from_utf8_lossy(&buf);
+            let b64_str = base64::encode(&buf);
             let req_src = stream.peer_addr().unwrap();
-            println!("{} {} {} {}", readu, txid, req_src, req_str);
+            println!("{} {} {} {}", readu, txid, req_src, b64_str);
             },
         Err(e) => println!("Unable to read stream: {}", e),
     }
