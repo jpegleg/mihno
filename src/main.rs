@@ -21,7 +21,9 @@ fn harvest_client(mut stream: &TcpStream,txid: Uuid) {
     let mut buf = [0u8 ;9072];
     match stream.read(&mut buf) {
         Ok(_) => {
-            let _req_str = String::from_utf8_lossy(&buf);
+//            let req_str = String::from_utf8_lossy(&buf);
+//          If you want to use raw data without encoding, comment out
+//          out the below base64, comment the above in, and use req_str instead.
             let b64_str = base64::encode(&buf);
             let req_src = stream.peer_addr().unwrap();
             println!("{} {} {} {}", readu, txid, req_src, b64_str);
@@ -39,7 +41,7 @@ fn harvest_client(mut stream: &TcpStream,txid: Uuid) {
 // appropriate for your situation etc.
 fn response_client(mut stream: TcpStream,txid: Uuid) {
     let writeo: DateTime<Utc> = Utc::now();
-    let response = b"HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=UTF-8\r\n\r\nf193c894e0f896ea08f4396fa83eb61949aa43d931078b337bed80591caa1262\r\n";
+    let response = b"HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n5aedbcfdfd6cf03dc48f8af74b887bad46bb559df5daddacb9e960d7af12269e\r\n";
     match stream.write(response) {
         Ok(_) => println!("{} {} {}", writeo, txid, "Response sent _<---_ end transaction"),
         Err(e) => println!("{} {} {} {}", writeo, txid, e, "Failed sending response _<-!_ end transaction"),
