@@ -18,7 +18,7 @@ extern crate base64;
 // Collect anything we get sent.
 fn harvest_client(mut stream: &TcpStream,txid: Uuid) {
     let readu: DateTime<Utc> = Utc::now();
-    let mut buf = [0u8 ;9072];
+    let mut buf = [0u8 ;4096];
     match stream.read(&mut buf) {
         Ok(_) => {
 //            let req_str = String::from_utf8_lossy(&buf);
