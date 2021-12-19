@@ -6,7 +6,7 @@ Wants=mihno.service
 
 [Service]
 Type=forking
-ExecStart=/usr/local/sbin/mihno
+ExecStart=/usr/sbin/mihno
 ExecReload=/bin/kill -s HUP $MAINPID
 ExecStop=/bin/kill -s QUIT $MAINPID
 PrivateTmp=true
