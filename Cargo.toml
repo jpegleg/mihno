@@ -8,3 +8,4 @@ edition = "2021"
 [dependencies]
 chrono = "0.4"
 uuid = { version = "0.4", features = ["serde", "v4"] }
+base64 = "0.13.0"
