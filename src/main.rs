@@ -52,8 +52,8 @@ fn transaxor(stream: TcpStream,txid: Uuid) {
 
 fn main() {
     let initu = Utc::now();
-    let listener = TcpListener::bind("0.0.0.0:3123").unwrap();
-    println!("{} {}", initu, "M_I_H_N_O - Listening for connections on port 3123");
+    let listener = TcpListener::bind("0.0.0.0:3975").unwrap();
+    println!("{} {}", initu, "M_I_H_N_O - Listening for connections on port 3975");
 
     for stream in listener.incoming() {
         match stream {
