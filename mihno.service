@@ -1,0 +1,15 @@
+[Unit]
+Description=mihno honeypot
+Documentation=https://github.com/jpegleg/mihno
+After=network.target 
+Wants=mihno.service
+
+[Service]
+Type=forking
+ExecStart=/usr/local/sbin/mihno
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s QUIT $MAINPID
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
