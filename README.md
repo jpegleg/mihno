@@ -74,7 +74,7 @@ Cache-Control: max-age=0
 
 2021-12-17 17:13:46.974986805 UTC de379029-0fd9-4e72-9874-9a3ba277b3a9 Response sent _<---_ end transaction
 2021-12-17 19:09:17.934566878 UTC 60bd9d55-9784-4846-a10c-0af23cd6c396  _--->_ start transaction
-2021-12-17 19:09:17.934707002 UTC 60bd9d55-9784-4846-a10c-0af23cd6c39 127.0.0.1:59622 POST / HTTP/1.1
+2021-12-17 19:09:17.934707002 UTC 60bd9d55-9784-4846-a10c-0af23cd6c396 127.0.0.1:59622 POST / HTTP/1.1
 Host: localhost:3975
 User-Agent: curl/7.74.0
 Accept: */*
@@ -82,7 +82,7 @@ Content-Length: 27
 Content-Type: application/x-www-form-urlencoded
 
 honk honk message body post
-2021-12-17 19:09:17.934791245 UTC 60bd9d55-9784-4846-a10c-0af23cd6c39 Response sent _<---_ end transaction
+2021-12-17 19:09:17.934791245 UTC 60bd9d55-9784-4846-a10c-0af23cd6c396 Response sent _<---_ end transaction
 
 ```
 
