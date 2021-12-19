@@ -16,14 +16,14 @@ extern crate chrono;
 // any needed encryption is handled elsewhere etc.
 
 // Collect anything we get sent.
-fn harvest_client(mut stream: &TcpStream) {
+fn harvest_client(mut stream: &TcpStream,txid: Uuid) {
     let readu: DateTime<Utc> = Utc::now();
-    let mut buf = [0u8 ;4096];
+    let mut buf = [0u8 ;9072];
     match stream.read(&mut buf) {
         Ok(_) => {
             let req_str = String::from_utf8_lossy(&buf);
             let req_src = stream.peer_addr().unwrap();
-            println!("{} {} {}", readu, req_src, req_str);
+            println!("{} {} {} {}", readu, txid, req_src, req_src);
             },
         Err(e) => println!("Unable to read stream: {}", e),
     }
@@ -36,24 +36,24 @@ fn harvest_client(mut stream: &TcpStream) {
 // that is being used to label this build.
 // Do what you want with it, make the response
 // appropriate for your situation etc.
-fn response_client(mut stream: TcpStream) {
+fn response_client(mut stream: TcpStream,txid: Uuid) {
     let writeo: DateTime<Utc> = Utc::now();
-    let response = b"HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n<html><body><h1>H A R V E S T E D </h1></br></br><p>performance +</br></br>a2c727ee8f206913df426b6bd29d7727bf19a10229466edfc349812388c911bd</p></body></html>\r\n";
+    let response = b"f193c894e0f896ea08f4396fa83eb61949aa43d931078b337bed80591caa1262\r\n";
     match stream.write(response) {
-        Ok(_) => println!("{} {}", writeo, "Response sent _<---_ end transaction"),
-        Err(e) => println!("{} {} {}", writeo, e, "Failed sending response _<-!_ end transaction"),
+        Ok(_) => println!("{} {} {}", writeo, txid, "Response sent _<---_ end transaction"),
+        Err(e) => println!("{} {} {} {}", writeo, txid, e, "Failed sending response _<-!_ end transaction"),
     }
 }
 
-fn transaxor(stream: TcpStream) {
-    harvest_client(&stream);
-    response_client(stream);
+fn transaxor(stream: TcpStream,txid: Uuid) {
+    harvest_client(&stream,txid);
+    response_client(stream,txid);
 }
 
 fn main() {
     let initu = Utc::now();
-    let listener = TcpListener::bind("0.0.0.0:3975").unwrap();
-    println!("{} {}", initu, "Listening for connections on port 3975");
+    let listener = TcpListener::bind("0.0.0.0:3123").unwrap();
+    println!("{} {}", initu, "M_I_H_N_O - Listening for connections on port 3123");
 
     for stream in listener.incoming() {
         match stream {
@@ -62,7 +62,7 @@ fn main() {
                     let recvu = Utc::now();
                     let txid = Uuid::new_v4();
                     println!("{} {} {}", recvu, txid, " _--->_ start transaction");
-                    transaxor(stream)
+                    transaxor(stream,txid)
                 });
             }
             Err(e) => {
