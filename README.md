@@ -52,9 +52,9 @@ In this example output, we can see the telnet data in the middle there. The firs
 the second a raw TCP (from our telnet above), and the third a curl doing a POST.
 
 ```
-2021-12-17 17:13:13.744257569 UTC Listening for connections on port 3975
+2021-12-17 17:13:13.744257569 UTC M_I_H_N_O - Listening for connections on port 3975
 2021-12-17 17:13:19.679084778 UTC 72a6c16d-75ad-4c6a-bed1-c9c6ce143845  _--->_ start transaction
-2021-12-17 17:13:19.679346530 UTC 192.168.1.133:59677 GET / HTTP/1.1
+2021-12-17 17:13:19.679346530 UTC 72a6c16d-75ad-4c6a-bed1-c9c6ce143845 192.168.1.133:59677 GET / HTTP/1.1
 Host: mihno-host:3975
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:95.0) Gecko/20100101 Firefox/95.0
 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
@@ -68,13 +68,13 @@ Sec-GPC: 1
 Cache-Control: max-age=0
 
 
-2021-12-17 17:13:19.679460707 UTC Response sent _<---_ end transaction
+2021-12-17 17:13:19.679460707 UTC 72a6c16d-75ad-4c6a-bed1-c9c6ce143845 Response sent _<---_ end transaction
 2021-12-17 17:13:39.620908274 UTC de379029-0fd9-4e72-9874-9a3ba277b3a9  _--->_ start transaction
-2021-12-17 17:13:39.620966387 UTC 127.0.0.1:49364 some funky tcp data sent in
+2021-12-17 17:13:39.620966387 UTC de379029-0fd9-4e72-9874-9a3ba277b3a9 127.0.0.1:49364 some funky tcp data sent in
 
-2021-12-17 17:13:46.974986805 UTC Response sent _<---_ end transaction
+2021-12-17 17:13:46.974986805 UTC de379029-0fd9-4e72-9874-9a3ba277b3a9 Response sent _<---_ end transaction
 2021-12-17 19:09:17.934566878 UTC 60bd9d55-9784-4846-a10c-0af23cd6c396  _--->_ start transaction
-2021-12-17 19:09:17.934707002 UTC 127.0.0.1:59622 POST / HTTP/1.1
+2021-12-17 19:09:17.934707002 UTC 60bd9d55-9784-4846-a10c-0af23cd6c39 127.0.0.1:59622 POST / HTTP/1.1
 Host: localhost:3975
 User-Agent: curl/7.74.0
 Accept: */*
@@ -82,7 +82,7 @@ Content-Length: 27
 Content-Type: application/x-www-form-urlencoded
 
 honk honk message body post
-2021-12-17 19:09:17.934791245 UTC Response sent _<---_ end transaction
+2021-12-17 19:09:17.934791245 UTC 60bd9d55-9784-4846-a10c-0af23cd6c39 Response sent _<---_ end transaction
 
 ```
 
@@ -98,17 +98,17 @@ An example of log4shell LDAP bind vs a regular bind, here is the log4shell bind:
 
 ```
 2021-12-18 00:09:23.417878259 UTC bc36e55d-3cdb-44ca-8a64-b7616569e75b  _--->_ start transaction
-2021-12-18 00:09:23.418116772 UTC 127.0.0.1:40446 0
+2021-12-18 00:09:23.418116772 UTC bc36e55d-3cdb-44ca-8a64-b7616569e75b 127.0.0.1:40446 0
                                                        `�
-2021-12-18 00:09:23.418259503 UTC Response sent _<---_ end transaction
+2021-12-18 00:09:23.418259503 UTC bc36e55d-3cdb-44ca-8a64-b7616569e75b Response sent _<---_ end transaction
 ```
 
 And here is an example from Apache Directory Studio, a valid LDAP authenticated BIND request for user admin password admin (that would exit in error on the client side when the client receives the mihno response to its LDAP bind request, unless otherwise adjusted):
 
 ```
 2021-12-18 03:51:12.493294279 UTC b8b275e0-0637-4778-a48b-73dad564ca2c  _--->_ start transaction
-2021-12-18 03:51:12.493480487 UTC 127.0.0.1:57685 0`admin�admin
-2021-12-18 03:51:12.545367898 UTC Response sent _<---_ end transaction
+2021-12-18 03:51:12.493480487 UTC b8b275e0-0637-4778-a48b-73dad564ca2c 127.0.0.1:57685 0`admin�admin
+2021-12-18 03:51:12.545367898 UTC b8b275e0-0637-4778-a48b-73dad564ca2c Response sent _<---_ end transaction
 ```
 
 The IP, ephemeral port, headers, and raw data from the client connection (vulnerable host to log4shell for example as the client) are captured in STDOUT of M I H N O. This means raw binary data types are preserved, via threads of simple Rust. The output is to be used as a stream of honeypot data, likely processed by other programs.
