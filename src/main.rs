@@ -38,7 +38,7 @@ fn harvest_client(mut stream: &TcpStream,txid: Uuid) {
 // appropriate for your situation etc.
 fn response_client(mut stream: TcpStream,txid: Uuid) {
     let writeo: DateTime<Utc> = Utc::now();
-    let response = b"f193c894e0f896ea08f4396fa83eb61949aa43d931078b337bed80591caa1262\r\n";
+    let response = b"HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=UTF-8\r\n\r\nf193c894e0f896ea08f4396fa83eb61949aa43d931078b337bed80591caa1262\r\n";
     match stream.write(response) {
         Ok(_) => println!("{} {} {}", writeo, txid, "Response sent _<---_ end transaction"),
         Err(e) => println!("{} {} {} {}", writeo, txid, e, "Failed sending response _<-!_ end transaction"),
