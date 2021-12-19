@@ -41,7 +41,7 @@ funky data and stuff
 HTTP/1.1 200 OK
 Content-Type: text/html; charset=UTF-8
 
-<html><body><h1>H A R V E S T E D </h1></br></br><p>performance +</br></br>a2c727ee8f206913df426b6bd29d7727bf19a10229466edfc349812388c911bd</p></body></html>
+f193c894e0f896ea08f4396fa83eb61949aa43d931078b337bed80591caa1262
 Connection closed by foreign host.
 ```
 
