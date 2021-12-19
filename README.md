@@ -1,14 +1,32 @@
 # mihno
 A simple TCP server honeypot written in Rust compatible with raw TCP and HTTP clients.
 
-sha256 of mihno binary
-27a4f56760afd4f042e1b09de78967edc4195f6d95bb03527173314345ff9caa
+Example build steps with docker:
 
-sha1 of mihno binary
-fd92201da8f1dc965ca98d8003537666f2598659
+```
+git clone https://github.com/jpegleg/mihno && cd mihno
+cargo build --release
+docker build -t "myprivateregistryplace:5000/mihno:1" .
+```
 
+Example build steps, reconfiguring from default port 3975 to port 389, with systemd and a log file in /var/log/ on linux (using sudo):
 
-As usual for rust, `cargo build --release` to compile it.
+```
+git clone https://github.com/jpegleg/mihno && cd mihno
+sed -i 's/3975/389/g' src/main.rs
+cargo build --release
+sudo cp target/release/mihno /usr/sbin/mihno.bin
+sudo echo "#!/usr/bin/env bash" > /usr/sbin/mihno
+sudo echo "/usr/sbin/mihno.bin >> /var/log/mihno.log 2> >> /var/tmp/mihno.err" > /usr/sbin/mihno
+sudo chmod +x /usr/sbin/mihno
+sudo cp mihno.service /usr/lib/systemd/system/ && sudo systemctl enable mihno
+sudo systemctl start mihno
+```
+
+There is a fun optional thing I have in this template that is a SHA256 of a blob from a PRNG that is an additional
+version tag. 
+
+As usual for rust, `cargo build --release` to compile it. Then the binary in target/release/mihno can be packaged or otherwise deployed etc.
 
 Raw TCP clients like telnet and netcat can send in data, as well as HTTP clients
 like cURL etc.
