@@ -108,7 +108,7 @@ M I H N O can be configured with different ports. It has proven very useful with
 ```
 0^L^B^A^A`^G^B^A^C^D^@�
 ```
-That blob (any data the client sends in shorter than 4096, including new lines) is then followed by NULLs filling the rest of the buffer as well `^@` in M I H N O that default terminals will read as blank spaces unless you view "invisible" characters. The buffer set is 4096, that can be adjusted as needed in main.rs. Any data longer or after the 4096 is not read, and return sequence (like pressing return in telnet) will also terminate the stream unless the client starts a new TCP connection. HTTP headers will all be logged and payloads with newlines will be retained.
+That blob, any data received from the client, is base64 encoded. The data is padding by NULLs filling the rest of the buffer as well. The base64 representation iS "A" and the raw (cat -vET) representation is `^@`. Default terminals will read those decoded NULLS as blank spaces unless you view "invisible" characters. The buffer set is 4096, that can be adjusted as needed in main.rs. Any data longer or after the 4096 is not read, and return sequence (like pressing return in telnet) will also terminate the stream unless the client starts a new TCP connection. HTTP headers will all be logged and payloads with newlines will be retained. Payloads can be shorter than the full indended payload the client tries to send but never larger than the buffer. Anything after the buffer is full is ignored.
 
 An example of log4shell LDAP bind vs a regular bind, here is the log4shell bind:
 
