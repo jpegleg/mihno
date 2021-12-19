@@ -92,7 +92,7 @@ M I H N O can be configured with different ports. It has proven very useful with
 ```
 0^L^B^A^A`^G^B^A^C^D^@�
 ```
-That blob (any data the client sends in shorter than 4096) is then followed by NULLs filling the rest of the buffer as well `^@` in M I H N O that default terminals will read as blank spaces unless you view "invisible" characters. The buffer set is 4096, that can be adjusted as needed in main.rs. Any data longer or after the 4096 is not read unless the client starts a new TCP connection.
+That blob (any data the client sends in shorter than 4096 unless a new line is reached) is then followed by NULLs filling the rest of the buffer as well `^@` in M I H N O that default terminals will read as blank spaces unless you view "invisible" characters. The buffer set is 4096, that can be adjusted as needed in main.rs. Any data longer or after the 4096 is not read, and a new line or return sequence will also terminate the stream unless the client starts a new TCP connection.
 
 An example of log4shell LDAP bind vs a regular bind, here is the log4shell bind:
 
