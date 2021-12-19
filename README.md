@@ -1,5 +1,7 @@
 # mihno
-A simple TCP server honeypot written in Rust compatible with raw TCP and HTTP clients.
+#### A simple cloud native TCP server honeypot written in Rust, compatible with raw TCP and HTTP clients.
+
+![mihno](https://crates.io/assets/Cargo-Logo-Small-c39abeb466d747f3be442698662c5260.png)
 
 Example build steps with docker:
 
