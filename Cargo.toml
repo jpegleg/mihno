@@ -1,6 +1,6 @@
 [package]
 name = "mihno"
-version = "0.1.1" #f193c894e0f896ea08f4396fa83eb61949aa43d931078b337bed80591caa1262
+version = "0.1.2" #5aedbcfdfd6cf03dc48f8af74b887bad46bb559df5daddacb9e960d7af12269e
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
