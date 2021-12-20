@@ -14,7 +14,7 @@ M I H N O is an easy to use and reliable TCP data collector. It can be deployed 
 ### + Adjustable logging
 ### + Thread safe and memory safe
 
-The default listener is 3975. Adjust that in the src/main.rs file, along with any other adjustments you need.
+The default listener for M I H N O is port 3975. Adjust that in the src/main.rs file, along with any other adjustments you need.
 Set multiple M I H N O services on different non-conflicting ports, read the data in your security systems and respond accordingly.
 
 ## Documentation notes:
