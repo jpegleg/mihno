@@ -1,7 +1,10 @@
 # mihno
-#### A TCP server honeypot template written in Rust, compatible with raw TCP and HTTP clients.
 
 ![mihno](https://carefuldata.com/images/cdlogo.png)
+
+#### A TCP server honeypot template written in Rust, compatible with raw TCP and HTTP clients.
+
+M I H N O is an easy to use and reliable TCP data collector. It can be deployed directly on linux, in docker, k8s, and more.
 
 ### + Cloud native design
 ### + Light-weight compute
@@ -11,6 +14,8 @@
 ### + Adjustable logging
 ### + Thread safe and memory safe
 
+The default listener is 3975. Adjust that in the src/main.rs file, along with any other adjustments you need.
+Set multiple M I H N O services on different non-conflicting ports, read the data in your security systems and respond accordingly.
 
 ## Documentation notes:
 
