@@ -1,9 +1,18 @@
 # mihno
-#### A simple cloud native TCP server honeypot written in Rust, compatible with raw TCP and HTTP clients.
+#### A TCP server honeypot template written in Rust, compatible with raw TCP and HTTP clients.
 
-![mihno](https://low.world/images/mihno.png)
+![mihno](https://carefuldata.com/images/cdlogo.png)
+
+### + Cloud native design
+### + Light-weight compute
+### + Easy to understand code
+### + Performant 
+### + UUIDs and timestamps for each interaction
+### + Adjustable logging
+### + Thread safe and memory safe
 
 
+## Documentation notes:
 
 Example build steps with docker:
 
