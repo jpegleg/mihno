@@ -65,7 +65,7 @@ fn main() {
                     let recvu = Utc::now();
                     let txid = Uuid::new_v4();
                     let str_src = stream.peer_addr().unwrap();
-                    println!("{} {} {} {}", recvu, txid, " _--->_ start transaction from ", str_src);
+                    println!("{} {} {} {}", recvu, txid, " _--->_ start transaction from", str_src);
                     transaxor(stream,txid)
                 });
             }
