@@ -41,7 +41,7 @@ fn harvest_client(mut stream: &TcpStream,txid: Uuid) {
 // appropriate for your situation etc.
 fn response_client(mut stream: TcpStream,txid: Uuid) {
     let writeo: DateTime<Utc> = Utc::now();
-    let response = b"HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n5aedbcfdfd6cf03dc48f8af74b887bad46bb559df5daddacb9e960d7af12269e\r\n";
+    let response = b"HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n7e65002f3d5bae04afc4f0b66c14e4bed56680e2ffae3b86f4209e607cffdadb\r\n";
     match stream.write(response) {
         Ok(_) => println!("{} {} {}", writeo, txid, "Response sent _<---_ end transaction"),
         Err(e) => println!("{} {} {} {}", writeo, txid, e, "Failed sending response _<-!_ end transaction"),
@@ -65,7 +65,7 @@ fn main() {
                     let recvu = Utc::now();
                     let txid = Uuid::new_v4();
                     let str_src = stream.peer_addr().unwrap();
-                    println!("{} {} {} {}", recvu, txid, " _--->_ start transaction with ", str_src);
+                    println!("{} {} {} {}", recvu, txid, " _--->_ start transaction from ", str_src);
                     transaxor(stream,txid)
                 });
             }
