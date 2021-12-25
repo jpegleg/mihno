@@ -1,8 +1,11 @@
 use std::net::{TcpStream, TcpListener};
 use std::io::{Read, Write};
+use std::fs::File;
 use std::thread;
 use uuid::Uuid;
 use chrono::prelude::*;
+use serde::Deserialize;
+
 extern crate chrono;
 extern crate base64;
 
@@ -14,6 +17,11 @@ extern crate base64;
 // that the 0.0.0.0:3975 can be replaced with 127.0.0.1:3875
 // and a TLS layer in front of it, or otherwise
 // any needed encryption is handled elsewhere etc.
+
+#[derive(Deserialize)]
+struct Config {
+    port: String,
+}
 
 // Collect anything we get sent.
 fn harvest_client(mut stream: &TcpStream,txid: Uuid) {
@@ -53,10 +61,16 @@ fn transaxor(stream: TcpStream,txid: Uuid) {
     response_client(stream,txid);
 }
 
-fn main() {
+fn main() -> std::io::Result<()> {
+    let mut file = File::open("mihno.toml")?;
+    let mut contents = String::new();
+    file.read_to_string(&mut contents)?;
+    let config: Config = toml::from_str(&contents).unwrap();
     let initu = Utc::now();
-    let listener = TcpListener::bind("0.0.0.0:3975").unwrap();
-    println!("{} {}", initu, "M_I_H_N_O - Listening for connections on port 3975");
+    let mut address = "0.0.0.0:".to_string();
+    address += &config.port;
+    let listener = TcpListener::bind(address).unwrap();
+    println!("{} {} {}", initu, "M_I_H_N_O - Listening for connections on port", config.port);
 
     for stream in listener.incoming() {
         match stream {
@@ -75,4 +89,5 @@ fn main() {
             }
         }
     }
+    Ok(())
 }
