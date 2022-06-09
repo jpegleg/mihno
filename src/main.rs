@@ -62,7 +62,7 @@ fn transaxor(stream: TcpStream,txid: Uuid) {
 }
 
 fn main() -> std::io::Result<()> {
-    let mut file = File::open("mihno.toml")?;
+    let mut file = File::open("/etc/mihno.toml")?;
     let mut contents = String::new();
     file.read_to_string(&mut contents)?;
     let config: Config = toml::from_str(&contents).unwrap();
