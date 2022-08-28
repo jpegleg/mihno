@@ -1,11 +1,10 @@
-# protean-gitops build function
 protean_build() {
   rustup update
   cargo build --release
 }
-# No tests written yet, but for when we do have them...
+
 protean_test() {
   cargo test
   cargo clean
-  trivy image "localhost:5000/mihno:test" > mihno_trivy-report.txt
+  trivy image "localhost:5000/mihno:test" > ../mihno_trivy-report_$(date +%Y%m%d%H%M%S).txt
 }
