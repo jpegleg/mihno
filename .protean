@@ -1,7 +1,7 @@
+# protean-gitops build function
 protean_build() {
+  rustup update
   cargo build --release
-  cp target/release/mihno .
-  cargo clean
 }
 # No tests written yet, but for when we do have them...
 protean_test() {
