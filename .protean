@@ -1,0 +1,10 @@
+protean_build() {
+  cargo build --release
+  cp target/release/mihno .
+  cargo clean
+}
+# No tests written yet, but for when we do have them...
+protean_test() {
+  cargo test
+  cargo clean
+}
