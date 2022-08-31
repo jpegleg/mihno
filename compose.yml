@@ -1,0 +1,8 @@
+version: '3'
+services:
+  mihno:
+    image: localhost:5000/mihno:test
+    container_name: defaultmihno
+    restart: unless-stopped
+    ports:
+      - "3975:3975"
