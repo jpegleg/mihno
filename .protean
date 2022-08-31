@@ -1,12 +1,12 @@
 protean_build() {
   rustup update
-  cargo build --release
+  ~/.cargo/bin/cargo build --release
   rm -rf .git
 }
 
 protean_test() {
-  cargo test
-  cargo clean
+  ~/.cargo/bin/cargo test
+  ~/.cargo/bin/cargo clean
   trivy image "localhost:5000/mihno:test" > ../mihno_trivy-report_$(date +%Y%m%d%H%M%S).txt
   docker-compose up -d
   curl localhost:3975 | grep "7e65002f3d5bae04afc4f0b66c14e4bed56680e2ffae3b86f4209e607cffdadb" || exit 1
