@@ -1,7 +1,6 @@
 protean_build() {
   rustup update
   ~/.cargo/bin/cargo build --release
-  rm -rf .git
 }
 
 protean_test() {
