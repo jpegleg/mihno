@@ -17,6 +17,12 @@ M I H N O is an easy to use and reliable TCP data collector. It can be deployed 
 The default listener for M I H N O is port 3975. Adjust that in the src/main.rs file, along with any other adjustments you need.
 Set multiple M I H N O services on different non-conflicting ports, read the data in your security systems and respond accordingly.
 
+## small musl libc scratch build Dockerfile
+
+The Dockerfile default is now a `scratch` build, which has the OCI image size down to less than 5MB!
+
+The `ubuntu` Dockerfile version is stored in `Dockerfile_ubuntu_larger_version`.
+
 ## Documentation notes:
 
 Example build steps with docker:
